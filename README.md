@@ -13,20 +13,20 @@ Install [ESLint](https://www.github.com/eslint/eslint).
 $ npm install eslint
 ```
 
-Install eslint-plugin-react-native-animation
+Install react-native-animation-linter
 
 ```sh
-$ npm install eslint-plugin-react-native-animation
+$ npm install react-native-animation-linter
 ```
 
 # Configuration
 
-Add `plugins` section and specify ESLint-plugin-react-native-animations as a plugin.
+Add `plugins` section and specify react-native-animation-linter as a plugin.
 
 ```json
 {
   "plugins": [
-    "react-native-animation"
+    "react-native-animation-linter"
   ]
 }
 ```
@@ -37,7 +37,7 @@ Finally, enable the rules that you would like to use.
 ```json
 {
   "rules": {
-    "react-native/must-tear-down-animations": 2,
+    "react-native-animation-linter/must-tear-down-animations": 2,
   }
 }
 ```
