@@ -3,7 +3,7 @@
  */
 
 const allRules = {
-    // Add rules here once they exist!
+    'must-tear-down-animations': require('./lib/rules/must-tear-down-animations'),
 };
 
 // Set up rules to trigger errors (rather than warnings)
