@@ -194,6 +194,34 @@ const tests = {
                 }
             }`,
         },
+        {
+            // Multi-component case (both components have animations torn down)
+            code: `
+            const React = require('react');
+            const {Animated} = require('react-native');
+            class MyComponent extends React.Component {
+                state = {
+                    color: new Animated.Value(0)
+                }
+                componentWillUnmount() {
+                    this.state.color.stopAnimation();
+                }
+                render() {
+                    return <Animated.View/>;
+                }
+            }
+            export default class MyOtherComponent extends React.Component {
+                state = {
+                   color: new Animated.Value(0),
+                };
+                componentWillUnmount() {
+                    this.state.color.stopAnimation();
+                }
+                render() {
+                     return <Animated.View/>;
+                }
+            }`,
+        },
     ],
     invalid: [
         {
@@ -372,6 +400,34 @@ const tests = {
                 }
                 render() {
                     return <Animated.View />;
+                }
+            }`,
+            errors: [{
+                message: 'Must tear down animations when component unmounts',
+            }],
+        },
+        {
+            // Multi-component case (only one of the animations is torn down)
+            code: `
+                const React = require('react');
+                const {Animated} = require('react-native');
+                class MyComponent extends React.Component {
+                    state = {
+                        color: new Animated.Value(0)
+                    }
+                    componentWillUnmount() {
+                        this.state.color.stopAnimation();
+                    }
+                    render() {
+                        return <Animated.View/>;
+                    }
+                }
+                export default class MyOtherComponent extends React.Component {
+                state = {
+                    color: new Animated.Value(0),
+                };
+                render() {
+                    return <Animated.View/>;
                 }
             }`,
             errors: [{
