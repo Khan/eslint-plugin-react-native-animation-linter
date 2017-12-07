@@ -1,11 +1,11 @@
 {
-  "name": "eslint-plugin-react-native-animation",
+  "name": "react-native-animation-linter",
   "version": "0.0.0",
   "author": "askerry",
   "description": "Lint rules to ensure safe management of React Native animations.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
+    "test": "node_modules/mocha/bin/_mocha tests/**/*.js"
   },
   "files": [
     "LICENSE",
