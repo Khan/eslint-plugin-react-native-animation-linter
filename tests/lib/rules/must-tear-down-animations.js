@@ -161,7 +161,7 @@ const tests = {
         },
         {
             // Animated is imported from something sneaky, not react-native.
-            // It's okay that we don't tear it down!
+            // It's okay that we don't tear it down! (import style v1)
             code: `
             const React = require('react');
             const {Animated} = require('my-animation-library');
@@ -174,6 +174,38 @@ const tests = {
                     return <Animated.View/>;
                 }
            }`,
+        },
+        {
+            // Animated is imported from something sneaky, not react-native.
+            // It's okay that we don't tear it down! (import style v2)
+            code: `
+            const React = require('react');
+            const Animated = require('my-animation-library');
+            export default class MyComponent extends React.Component {
+                state = {
+                    color: new Animated.Value(0),
+                    height: 100,
+                };
+                render() {
+                    return <Animated.View/>;
+                }
+            }`,
+        },
+        {
+            // Animated is imported from something sneaky, not react-native.
+            // It's okay that we don't tear it down! (import style v3)
+            code: `
+            const React = require('react');
+            import Animated from 'my-animation-library';
+            export default class MyComponent extends React.Component {
+                state = {
+                    color: new Animated.Value(0),
+                    height: 100,
+                };
+                render() {
+                    return <Animated.View/>;
+                }
+            }`,
         },
         {
             // Animated state is extracted from state before torn down.
