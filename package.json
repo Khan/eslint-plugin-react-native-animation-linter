@@ -5,7 +5,8 @@
   "description": "Lint rules to ensure safe management of React Native animations.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha tests/**/*.js"
+    "test": "node_modules/mocha/bin/_mocha tests/**/*.js",
+    "format": "prettier-eslint --write 'tests/**/*.js, lib/**/*.js,'"
   },
   "files": [
     "LICENSE",
@@ -20,7 +21,8 @@
   "devDependencies": {
     "babel-eslint": "7.2.3",
     "eslint": "^4.3.0",
-    "mocha": "3.4.1"
+    "mocha": "3.4.1",
+    "prettier-eslint-cli": "^4.6.0"
   },
   "peerDependencies": {
     "eslint": "^3.17.0 || ^4.0.0"
