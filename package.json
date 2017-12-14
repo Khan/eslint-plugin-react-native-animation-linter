@@ -10,7 +10,9 @@
   },
   "files": [
     "LICENSE",
-    "README.md"
+    "README.md",
+    "index.js",
+    "lib"
   ],
   "repository": {
     "type": "git",
