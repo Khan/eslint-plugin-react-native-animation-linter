@@ -3,20 +3,19 @@
  */
 
 // TODO(amy): create this rule!
-const rule = require('../../../lib/rules/must-tear-down-animations');
-const RuleTester = require('eslint').RuleTester;
+const rule = require("../../../lib/rules/must-tear-down-animations");
+const RuleTester = require("eslint").RuleTester;
 
-require('babel-eslint');
+require("babel-eslint");
 
 const ruleTester = new RuleTester();
 
 const tests = {
-
-    valid: [
-        {
-            // Animated value is set via class property declaraction, and is
-            // properly torn down.
-            code: `
+  valid: [
+    {
+      // Animated value is set via class property declaraction, and is
+      // properly torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -30,12 +29,12 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated value is set via setState (directly provided as arg)
-            // and is torn down properly.
-            code: `
+            }`
+    },
+    {
+      // Animated value is set via setState (directly provided as arg)
+      // and is torn down properly.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -51,11 +50,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated value is set via getInitialState and is torn down.
-            code: `
+            }`
+    },
+    {
+      // Animated value is set via getInitialState and is torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -71,11 +70,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            });`,
-        },
-        {
-            // Animated value is set via variable in getInitialState and is torn down.
-            code: `
+            });`
+    },
+    {
+      // Animated value is set via variable in getInitialState and is torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -91,11 +90,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            });`,
-        },
-        {
-            // Two animated variables are set and both are torn down.
-            code: `
+            });`
+    },
+    {
+      // Two animated variables are set and both are torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -110,14 +109,14 @@ const tests = {
                 render() {
                     return <Animated.View />;
                 }
-            }`,
-        },
-        {
-            // Edge-case: A variable called `color` is set to an animated value.
-            // Elsewhere, a variable called `color` is set to component state.
-            // (but animated variable is never set to component state). There
-            // should be no error even though there's no teardown.
-            code: `
+            }`
+    },
+    {
+      // Edge-case: A variable called `color` is set to an animated value.
+      // Elsewhere, a variable called `color` is set to component state.
+      // (but animated variable is never set to component state). There
+      // should be no error even though there's no teardown.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -134,11 +133,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated state is set via a click handler with a variable
-            code: `
+            }`
+    },
+    {
+      // Animated state is set via a click handler with a variable
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -157,12 +156,12 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 },
-            });`,
-        },
-        {
-            // Animated is imported from something sneaky, not react-native.
-            // It's okay that we don't tear it down! (import style v1)
-            code: `
+            });`
+    },
+    {
+      // Animated is imported from something sneaky, not react-native.
+      // It's okay that we don't tear it down! (import style v1)
+      code: `
             const React = require('react');
             const {Animated} = require('my-animation-library');
             export default class MyComponent extends React.Component {
@@ -173,12 +172,12 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-           }`,
-        },
-        {
-            // Animated is imported from something sneaky, not react-native.
-            // It's okay that we don't tear it down! (import style v2)
-            code: `
+           }`
+    },
+    {
+      // Animated is imported from something sneaky, not react-native.
+      // It's okay that we don't tear it down! (import style v2)
+      code: `
             const React = require('react');
             const Animated = require('my-animation-library');
             export default class MyComponent extends React.Component {
@@ -189,12 +188,12 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated is imported from something sneaky, not react-native.
-            // It's okay that we don't tear it down! (import style v3)
-            code: `
+            }`
+    },
+    {
+      // Animated is imported from something sneaky, not react-native.
+      // It's okay that we don't tear it down! (import style v3)
+      code: `
             const React = require('react');
             import Animated from 'my-animation-library';
             export default class MyComponent extends React.Component {
@@ -205,11 +204,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated state is extracted from state before torn down.
-            code: `
+            }`
+    },
+    {
+      // Animated state is extracted from state before torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -223,11 +222,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Animated state is extracted from state before torn down.
-            code: `
+            }`
+    },
+    {
+      // Animated state is extracted from state before torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -241,11 +240,11 @@ const tests = {
                 render() {
                     return <Animated.View/>;
                 }
-            }`,
-        },
-        {
-            // Multi-component case (both components have animations torn down)
-            code: `
+            }`
+    },
+    {
+      // Multi-component case (both components have animations torn down)
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             class MyComponent extends React.Component {
@@ -269,14 +268,14 @@ const tests = {
                 render() {
                      return <Animated.View/>;
                 }
-            }`,
-        },
-    ],
-    invalid: [
-        {
-            // Animated state is set via class property declaration and
-            // is not torn down properly.
-            code: `
+            }`
+    }
+  ],
+  invalid: [
+    {
+      // Animated state is set via class property declaration and
+      // is not torn down properly.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -287,13 +286,15 @@ const tests = {
                     return <Animated.View/>
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set via setState but is not torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set via setState but is not torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -307,13 +308,15 @@ const tests = {
                     return <Animated.View/>
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set via getInitialState and not torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set via getInitialState and not torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -326,13 +329,15 @@ const tests = {
                     return <Animated.View />;
                 }
             });`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set directly in constructor and not torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set directly in constructor and not torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -346,14 +351,16 @@ const tests = {
                     return <Animated.View />;
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set via getInitialState (via a variable)
-            // and is not torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set via getInitialState (via a variable)
+      // and is not torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -366,13 +373,15 @@ const tests = {
                     return <Animated.View />;
                 }
             });`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set via setState with a variable and not torn down
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set via setState with a variable and not torn down
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -384,14 +393,16 @@ const tests = {
                     return <Animated.View />;
                 }
             });`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is initialized to non-animated value,
-            // then set to animated value later via variable.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is initialized to non-animated value,
+      // then set to animated value later via variable.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             const Hello = React.createClass({
@@ -408,13 +419,15 @@ const tests = {
                     return <Animated.View />;
                 }
             });`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Animated state is set via variable in constructor and not torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Animated state is set via variable in constructor and not torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -430,13 +443,15 @@ const tests = {
                     return <Animated.View />;
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Two animated variables are set and only one is torn down.
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Two animated variables are set and only one is torn down.
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             export default class MyComponent extends React.Component {
@@ -451,13 +466,15 @@ const tests = {
                     return <Animated.View />;
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
+      errors: [
         {
-            // Multi-component case (only one of the animations is torn down)
-            code: `
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    },
+    {
+      // Multi-component case (only one of the animations is torn down)
+      code: `
             const React = require('react');
             const {Animated} = require('react-native');
             class MyComponent extends React.Component {
@@ -479,24 +496,26 @@ const tests = {
                     return <Animated.View/>;
                 }
             }`,
-            errors: [{
-                message: 'Must tear down animations when component unmounts',
-            }],
-        },
-    ],
+      errors: [
+        {
+          message: "Must tear down animations when component unmounts"
+        }
+      ]
+    }
+  ]
 };
 
 const config = {
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
       classes: true,
-      jsx: true,
-    },
-  },
+      jsx: true
+    }
+  }
 };
 
 tests.valid.forEach(t => Object.assign(t, config));
 tests.invalid.forEach(t => Object.assign(t, config));
 
-ruleTester.run('must-tear-down-animations', rule, tests);
+ruleTester.run("must-tear-down-animations", rule, tests);
