@@ -226,6 +226,24 @@ const tests = {
             }`,
         },
         {
+            // Animated state is extracted from state before torn down.
+            code: `
+            const React = require('react');
+            const {Animated} = require('react-native');
+            export default class MyComponent extends React.Component {
+                state = {
+                    color: new Animated.Value(0),
+                };
+                componentWillUnmount() {
+                    const mysteryVar = this.state.color;
+                    mysteryVar.stopAnimation();
+                }
+                render() {
+                    return <Animated.View/>;
+                }
+            }`,
+        },
+        {
             // Multi-component case (both components have animations torn down)
             code: `
             const React = require('react');
