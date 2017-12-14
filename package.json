@@ -2,15 +2,14 @@
   "name": "react-native-animation-linter",
   "version": "0.0.0",
   "author": "askerry",
-  "description": "Lint rules to ensure safe management of React Native animations.",
+  "description":
+    "Lint rules to ensure safe management of React Native animations.",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha tests/**/*.js"
+    "test": "node_modules/mocha/bin/_mocha tests/**/*.js",
+    "format": "prettier-eslint --write './*.js' './tests/**/*.js' './lib/**/*.js'"
   },
-  "files": [
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["LICENSE", "README.md"],
   "repository": {
     "type": "git",
     "url": "https://github.com/khan/react-native-animation-linter"
@@ -20,7 +19,8 @@
   "devDependencies": {
     "babel-eslint": "7.2.3",
     "eslint": "^4.3.0",
-    "mocha": "3.4.1"
+    "mocha": "3.4.1",
+    "prettier-eslint-cli": "^4.6.0"
   },
   "peerDependencies": {
     "eslint": "^3.17.0 || ^4.0.0"
