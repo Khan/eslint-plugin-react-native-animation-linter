@@ -1,6 +1,6 @@
 {
-  "name": "react-native-animation-linter",
-  "version": "0.0.0",
+  "name": "eslint-plugin-react-native-animation-linter",
+  "version": "0.0.2",
   "author": "askerry",
   "description":
     "Lint rules to ensure safe management of React Native animations.",
@@ -12,10 +12,10 @@
   "files": ["LICENSE", "README.md"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/khan/react-native-animation-linter"
+    "url": "https://github.com/khan/eslint-plugin-react-native-animation-linter"
   },
-  "homepage": "https://github.com/khan/react-native-animation-linter",
-  "bugs": "https://github.com/khan/react-native-animation-linter/issues",
+  "homepage": "https://github.com/khan/eslint-plugin-react-native-animation-linter",
+  "bugs": "https://github.com/khan/eslint-plugin-react-native-animation-linter/issues",
   "devDependencies": {
     "babel-eslint": "7.2.3",
     "eslint": "^4.3.0",

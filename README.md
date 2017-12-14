@@ -3,7 +3,6 @@ ESLint plugin for detecting React Native Animation bugs
 =======================================================
 
 Lint rules to ensure safe management of React Native animations.
-This linter is modeled after (and borrows some code from) https://github.com/Intellicode/eslint-plugin-react-native
 
 # Installation
 
@@ -13,10 +12,10 @@ Install [ESLint](https://www.github.com/eslint/eslint).
 $ npm install eslint
 ```
 
-Install react-native-animation-linter
+Install eslint-plugin-react-native-animation-linter
 
 ```sh
-$ npm install react-native-animation-linter
+$ npm install eslint-plugin-react-native-animation-linter
 ```
 
 # Configuration
