@@ -1,15 +1,13 @@
 {
-    "extends": [
-        "../khan-linter/eslintrc",
-    ],
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-           "modules": true
-        }
-    },
-    "globals": {
-        "DEBUG": false
+  "extends": ["../devtools/khan-linter/eslintrc"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
     }
+  },
+  "globals": {
+    "DEBUG": false
+  }
 }
