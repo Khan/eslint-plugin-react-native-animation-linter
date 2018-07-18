@@ -2,6 +2,12 @@
   "name": "eslint-plugin-react-native-animation-linter",
   "version": "0.1.2",
   "author": "askerry",
+  "contributors": [
+    {
+      "name": "khanacademy",
+      "email": "opensource+npm@khanacademy.org"
+    }
+  ],
   "description": "Lint rules to ensure safe management of React Native animations.",
   "main": "index.js",
   "scripts": {
